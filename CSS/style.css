@@ -1,0 +1,2360 @@
+/* ========================================= */
+/* CSS Consolidado - style.css               */
+/* Baseado em CSS-BASE.pdf e CSS-SOBRE.pdf   */
+/* ========================================= */
+
+/* ----------------------------------------- */
+/* Estilos Globais e Base do Projeto (CSS-BASE.pdf) */
+/* ----------------------------------------- */
+
+/* Reset básico e estilos do container - essenciais para o layout geral */
+body, html {
+margin: 0;
+padding: 0;
+box-sizing: border-box; /* Garante que padding e bordas são incluídos na largura/altura */
+min-height: 100%;
+font-family: calibri, sans-serif;
+}
+
+/* Aplica box-sizing a todos os elementos e pseudo-elementos */
+*, *::before, *::after {
+box-sizing: inherit;
+}
+
+/* Container principal da página - mantém a estrutura Grid para header, main, footer */
+.container {
+display: grid;
+grid-template-rows: auto 1fr auto; /* header (auto), main (1fr), footer (auto) */
+min-height: 100vh;
+width: 100%;
+margin: 0 auto;
+padding: 0;
+overflow-x: hidden; /* Evita barras de rolagem horizontais indesejadas */
+background-color: transparent;
+}
+.sobre,
+.familia,
+.portfolio,
+.parcerias {
+padding: 0;
+min-height: 200px;
+color: #333;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+.sobre {
+background-color: #fb98ba; /* Cor: vermelho pastel */
+}
+.family {
+background-color: #000; /* Cor: Verde Pastel */
+}
+
+.portfolio {
+background-color: #FFDAB9; /* Cor: Laranja Suave */
+}
+.parcerias {
+background-color: #E6E6FA; /* Cor: Roxo Claro */
+}
+
+
+
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/* --- 1. MOBILE BASE (Até 599px) --- */
+/* (ESTRUTURA COM CSS GRID, DOIS CONTAINERS EMPILHADOS NO MOBILE) */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+
+
+
+/* ----------------------------------------- */
+/* Estilos do Header */
+/* ----------------------------------------- */
+
+
+
+.site-header {
+min-height: 35rem;
+padding: 4rem 15px;
+display: flex;
+flex-direction: column;
+align-items: center;
+position: relative;
+z-index: 1;
+background: rgb(20, 20, 20);
+background-image: linear-gradient(rgba(39, 39, 39, 0.9), rgba(39, 39, 39, 0.9)),
+url(../imgens/BG_01.png);
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+background-position: left bottom;
+width: 100%;
+text-align: center;
+}
+
+.site-header::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 50px;
+background-color: rgba(255, 0, 255, 0.5);
+z-index: 2;
+}
+
+.grupo_texto01 {
+width: 100%;
+color: #fff;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 2rem 4vw;
+gap: 1.5rem;
+box-sizing: border-box;
+max-width: 100%;
+}
+
+.grupo_texto01 h1 {
+display: block;
+width: 100%;
+margin: 0;
+padding: 0;
+font-size: 1.4em;
+letter-spacing: .06em;
+font-weight: normal;
+text-align: center;
+min-height: 1.5em;
+}
+
+.icon-profile {
+color: yellow;
+padding: 0 0.1em 0 .3em;
+font-size: 1.5em;
+font-weight: lighter;
+}
+
+.grupo_texto01 h2 {
+width: 100%;
+text-align: center;
+text-transform: uppercase;
+font-weight: bold;
+line-height: 1.1;
+margin: 0;
+font-size: clamp(5rem, 5vw, 7vh);
+min-height: 1.5em;
+}
+
+.grupo_texto01 p {
+display: block;
+width: 80%;
+margin: 0;
+padding: 0.5em;
+font-size: 1em;
+letter-spacing: .04em;
+font-weight: normal;
+color: yellow;
+border-bottom: 4px solid #fff;
+background-color: rgba(255,255,255,.2);
+text-transform: uppercase;
+text-align: center;
+min-height: 1.5em;
+}
+
+/* Estilos do Menu (Mobile First) */
+.menu-toggle {
+background: rgba(255, 240, 0, 0.4);
+border: none;
+cursor: pointer;
+padding: 10px;
+position: fixed;
+top: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 60px;
+height: 60px;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+z-index: 10;
+outline: none;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+border-bottom-left-radius: 30px;
+border-bottom-right-radius: 30px;
+border-bottom:#fff solid 2px;
+border-left:#fff solid 2px;
+border-right:#fff solid 2px;
+transition: all 0.3s ease;
+}
+
+body.menu-is-open .menu-toggle {
+background: rgb(114, 109, 20);
+width: 100%;
+border-radius: 0;
+left: 0;
+transform: translateX(0);
+border: 0;
+}
+.menu-toggle .bar {
+display: block;
+width: 35px;
+height: 2px;
+border-radius: 2px;
+background-color: white;
+transition: transform 0.3s ease, opacity 0.3s ease;
+position: relative;
+z-index: 11;
+}
+
+body.menu-is-open .menu-toggle .bar:nth-child(1) {
+transform: translateY(8px) rotate(45deg);
+}
+
+body.menu-is-open .menu-toggle .bar:nth-child(2) {
+opacity: 0;
+}
+
+body.menu-is-open .menu-toggle .bar:nth-child(3) {
+transform: translateY(-18px) rotate(-45deg);
+}
+
+.main-nav {
+position: fixed;
+top: 60px;
+left: 0;
+width: 100%;
+height: 0;
+background: rgba(72, 71, 71, 0.96);
+border-radius: 0 0 3em 3em;
+z-index: 20;
+overflow: hidden;
+transition: height 0.5s ease;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding-left: 0;
+padding-right: 0;
+padding-top: 0;
+}
+
+body.menu-is-open .main-nav {
+height: 60vh;
+transition: height 0.5s ease;
+background: rgba(72, 71, 71, 0.98);
+}
+
+.main-nav ul {
+list-style: none;
+margin: 0;
+padding: 20px 0;
+letter-spacing: .1em;
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 80%;
+max-width: 300px;
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+body.menu-is-open .main-nav ul {
+opacity: 1;
+transform: translateY(0);
+transition-delay: 0.3s;
+}
+
+.main-nav li {
+line-height: 3em;
+position: relative;
+transition: all 0.3s ease;
+padding: .5em;
+width: 100%;
+text-align: center;
+margin: 0;
+opacity: 0;
+transform: translateX(-20px);
+border-bottom: 1px solid #727171;
+}
+
+.main-nav li:not(:last-child) {
+margin-bottom: 3px;
+}
+
+body.menu-is-open .main-nav li {
+opacity: 1;
+transform: translateX(0);
+}
+
+body.menu-is-open .main-nav li:nth-child(1) { transition-delay: 0.4s; }
+body.menu-is-open .main-nav li:nth-child(2) { transition-delay: 0.5s; }
+body.menu-is-open .main-nav li:nth-child(3) { transition-delay: 0.6s; }
+body.menu-is-open .main-nav li:nth-child(4) { transition-delay: 0.7s; }
+body.menu-is-open .main-nav li:nth-child(5) { transition-delay: 0.8s; }
+
+.main-nav li a {
+color: #959191;
+font-size: 1.1em;
+font-weight: normal;
+display: block;
+width: 100%;
+text-decoration: none;
+padding: 0.5em 0;
+}
+.main-nav li a:hover {
+color: #479aed;
+}
+
+.main-nav li a:hover:before {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border-left: 1px solid rgba(255, 255, 255, 0.3);
+border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ----------------------------------------- */
+/* Estilos da Seção Principal (MAIN) */
+/* ----------------------------------------- */
+
+.main {
+background-color: #F0F0F0;
+padding: 0;
+display: grid;
+grid-template-columns: 1fr;
+gap: 0;
+align-items: start;
+}
+
+
+
+/* ----------------------------------------- */
+/* --- SOBRE  --- */
+/* ----------------------------------------- */
+.sobre{
+width: 100%;
+margin: 0 auto;
+display: grid;
+/* grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));*/
+grid-template-columns: 1fr;
+grid-template-rows: 1fr;
+grid-gap: 1.6em;
+padding: 3em 1em;
+background-color: #e3eded;
+box-sizing: border-box;
+}
+
+.sobre div{
+padding: 1.5em;
+max-width:100%;
+display: flex;
+flex-direction: column;
+justify-content:space-evenly;
+text-align: center;
+align-items: center;
+}
+
+.sobre div:nth-child(2) .button_big {
+display: block; /* Apenas o botão na sobre_02 é visível por padrão */
+}
+
+.sobre div:nth-child(1) .button_big{
+display: none; /* Mantém este botão oculto */
+}
+
+.sobre div:nth-child(3) .button_big{
+display: none; /* Mantém este botão oculto */
+}
+
+.sobre_img{
+   /* Dimensões responsivas para mobile */
+    width: 85vw; /* Usa 80% da largura da viewport */
+    height: 85vw; /* Mantém a proporção quadrada */
+    max-width: 300px; /* Limita a largura máxima para não ficar grande demais em telas maiores */
+    max-height: 300px; /* Limita a altura máxima */
+    border-radius: 50%; /* Formato original mantido */
+    padding: 6%;
+    box-sizing: border-box;
+transition: all .5s linear;
+}
+
+
+.sobre_img:hover{
+   /* Dimensões responsivas para mobile */
+    width: 90vw; /* Usa 80% da largura da viewport */
+    height: 90vw; /* Mantém a proporção quadrada */
+    max-width: 300px; /* Limita a largura máxima para não ficar grande demais em telas maiores */
+    max-height: 300px; /* Limita a altura máxima */
+    border-radius: 50%; /* Formato original mantido */
+    padding: 6%;
+    box-sizing: border-box;
+transition: all .5s linear;
+}
+
+
+
+.sobre div:nth-child(1) img{
+border: .2em solid #fff;
+background-color: rgba(255, 255, 255, 0.6);
+}
+
+.sobre div:nth-child(1) img:hover{
+border: .2em solid rgb(255, 255, 255);
+background-color: rgb(0, 196, 255);
+}
+.sobre div:nth-child(2) img{
+border: .2em solid #fff;
+background-color: rgba(255, 255, 255, 0.6);
+}
+.sobre div:nth-child(2) img:hover{
+border: .2em solid rgb(255, 255, 255);
+background-color: rgb(255, 0, 177);
+}
+
+.sobre div:nth-child(3) img{
+border: .2em solid #fff;
+background-color: rgba(255, 255, 255, 0.6);
+}
+.sobre div:nth-child(3) img:hover{
+border: .2em solid rgb(255, 255, 255);
+background-color: rgb(245, 255, 0);
+}
+
+.button_big a {
+display: inline-block;
+text-decoration: none;
+text-align: center;
+padding: .8em 4.5em;
+background-color: rgb(255, 255, 255);
+border: .15em solid rgb(255, 0, 255);
+transition: all .3s linear;
+color:#000;
+white-space: nowrap;
+margin-top: 1em;
+}
+
+.button_big a:hover {
+display: inline-block;
+text-decoration: none;
+text-align: center;
+padding: .8em 7em;
+background-color: rgb(255, 0, 255);
+border: .15em solid transparent;
+transition: all .3s linear;
+color:#fff;
+white-space: nowrap;
+}
+
+.sobre_h2{
+padding-top: 1vh;
+color: #333333;
+}
+.sobre_p{
+padding: 0 2em;
+position: relative;
+bottom: 0;
+width: 100%;
+box-sizing: border-box;
+color: #4b4b4b;
+font-size: 1.2em;
+}
+
+/* ----------------------------------------- */
+/* Estilos do Rodapé (FOOTER) */
+/* ----------------------------------------- */
+.footer {
+background-color: #333333; /* Cor: Cinza Escuro */
+color: #FFFFFF; /* Texto branco para contraste */
+padding: 0; /* Removido preenchimento interno para mobile */
+font-size: 0.9em; /* Tamanho de fonte um pouco menor */
+display: flex;
+justify-content: center; /* Centraliza o conteúdo horizontalmente */
+align-items: center; /* Centraliza o conteúdo verticalmente */
+min-height: 80px; /* Altura mínima para o rodapé */
+}
+
+
+/*FAMILY*/
+
+
+
+
+.family {
+  display: grid;
+  grid-template-columns: 1fr; /* Empilha os itens no mobile */
+  grid-auto-rows: min-content;
+  gap: 1em;
+  padding:  2.5em 1em 11em 1em;
+  background-color: #000; /* Valor padrão para cor primária */
+  place-items: center;
+  text-align: center;
+}
+
+/* ===== CONTAINER PRINCIPAL - GRID ÚNICO ===== */
+.family_barra {
+    /* CSS Grid - 1 coluna única */
+    display: grid;
+    width: 100%;
+    position: relative;
+    
+    /* Centralização */
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* ===== IMAGEM (EFEITOS ORIGINAIS MANTIDOS) ===== */
+
+.people-image {
+    /* Posicionamento no grid - ocupa toda a área */
+    grid-column: 1;
+    grid-row: 1;
+
+    /* Dimensões responsivas para mobile */
+    width: 80vw; /* Usa 80% da largura da viewport */
+    height: 80vw; /* Mantém a proporção quadrada */
+    max-width: 300px; /* Limita a largura máxima para não ficar grande demais em telas maiores */
+    max-height: 300px; /* Limita a altura máxima */
+    border-radius: 50% 50% 0 50%; /* Formato original mantido */
+    padding: 6%;
+    box-sizing: border-box;
+    transition: all 0.3s linear; /* Transição original */
+    object-fit: cover;
+    border: 0.5em solid #fff; /* Borda branca original */
+    transform: scale(0.8); /* Escala original */
+    transform-origin: center center;
+    cursor: no-drop;
+    z-index: 1;
+}
+.people-image:hover {
+  border-radius: 50% 50% 50% 0;
+}
+
+
+
+/* DEFINIÇÃO DO SEGUNDO CONTAINER GRID: family_text */
+
+.family_text {
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+
+
+.family_h1 {
+  color: #fff; /* Valor padrão para color-hover */
+  font-size: clamp(3.4rem, 5vw, 3rem);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+    .family_p {
+  color: #6d6a6a; /* Valor padrão para color-text */
+  font-size:1.2em;
+  margin: 1em 0;
+       padding: 0 5em;
+        line-height: 1.5
+}
+
+.button_big_family a {
+  display: inline-block;
+  padding: 0.8em 2em;
+  background-color: #000; /* Valor padrão para color-primary */
+  color: #0093ff; /* Valor padrão para color-text */
+  text-decoration: none;
+  border: 0.15em solid rgb(0, 147, 255); /* Valor padrão para color-secondary */
+  transition: all 0.3s linear; /* Valor padrão para transition-default */
+  font-size: 1.2em;
+}
+
+.button_big_family a:hover {
+  background-color: #0093ff; /* Valor padrão para color-secondary */
+  color: #fff; /* Valor padrão para color-hover */
+  padding: 0.8em 3.5em;
+}
+
+
+/*PORTIFÓLIO*/
+
+
+
+.portfolio {
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 3em 8em 0 0;
+}
+
+/* Cabeçalho da Seção */
+.port_titulos {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+   
+}
+
+.port_titulos h1 {
+    font-size: 1em; /* Tamanho do título principal */
+    color: #98aee0; /* Uma cor de destaque, exemplo */
+    line-height: 1.2; /* Garante que o texto em duas linhas não fique apertado */
+    max-width: 50ch; /* Limita a largura do H1 para legibilidade */
+    margin-left: auto; /* Centraliza o H1 com max-width */
+    margin-right: auto; /* Centraliza o H1 com max-width */
+    padding-bottom: 1em;
+     text-transform: uppercase;
+    font-weight: lighter;
+    font-family:calibri;
+     border-bottom: .2em solid #000;
+    margin-top: 4em;
+}
+
+.port_titulos p {
+    font-size: .95em; /* Tamanho do parágrafo */
+    line-height: 1.5;
+    color: #8b9fce;
+    max-width: 48ch; /* Limita a largura do parágrafo para melhor legibilidade */
+    margin-left: auto; /* Centraliza o parágrafo com max-width */
+    margin-right: auto; /* Centraliza o parágrafo com max-width */
+    font-weight: lighter;
+    letter-spacing: .03em;
+     font-family:calibri;
+    text-align: center;
+}
+
+
+
+/*--------------*/
+
+
+
+/* Contêiner do Grid de Itens do Portfólio */
+.portfolio_grid {
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    gap: 20px; 
+    padding: 0 15px; 
+}
+
+/* Estilos para cada Item Individual do Portfólio */
+.portfolio_item {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 250px;
+    height: 500px;
+    width: 100%;
+    background-color: #f8f8f8;
+    border-radius: 4% 12% 12% 4%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+
+    cursor: pointer;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+/* Imagens de Fundo para os Itens do Portfólio */
+.port_Cotidianos { 
+    
+    background: url('../imagens/portifolio/01.jpg') no-repeat center center / cover; }
+.port_Usual { background: url('../imagens/portifolio/02.jpg') no-repeat center center / cover; }
+.port_Especial { background: url('../imagens/portifolio/03.jpg') no-repeat center center / cover; }
+.port_plotter { background: url('../imagens/portifolio/04.jpg') no-repeat center center / cover; }
+
+/* Estilos para a Faixa de Texto Vertical (Inicialmente na parte inferior) */
+/*
+.vertical_text_band {
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 10px 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 90%;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    writing-mode: vertical-lr;
+    white-space: nowrap;
+    border-radius: 0 1em 1em 0;
+    transform: translateX(-77.77%);
+    opacity: 1; 
+    transition: transform 0.6s ease-out;
+}
+
+
+
+.portfolio_item:hover .vertical_text_band {
+    transform: translateX(0); 
+}
+.vertical_text_band {
+    
+    left: 0;
+    transition: left 0.6s ease-out;
+}
+
+ .vertical_text_band:hover {
+    transform: translateX(370%); 
+}
+*/
+.vertical_text_band h2 {
+    margin: 0;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+/* Estilos para o Conteúdo Detalhado (Inicialmente oculto)*/ 
+.portfolio_content {
+    background-color: rgb(255, 255, 255);
+    color: #fff;
+    padding: 1em;
+    position: absolute;
+    top: 13%;
+    left: 0;
+    width: 80%;
+    height: 70%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; /* Mantém o alinhamento à direita para o parágrafo e o botão */
+    overflow: hidden;
+    pointer-events: auto;
+    transform: translateX(-75%);
+    transition: transform 0.4s ease-out, background-color 0.4s ease-out;
+    box-sizing: border-box;
+    border-radius: 0 1em 1em 0;
+}
+
+
+.portfolio_content h2 {
+    margin: 0;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: #0093ff;
+    writing-mode: vertical-lr;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 0;
+    text-align: left;
+    position: absolute;
+    right: 20px; /* Posição do h2, que não será afetada pelas mudanças no parágrafo */
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+
+
+.portfolio_item:hover .portfolio_content {
+    transform: translateX(0);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+.portfolio_content p {
+    margin-bottom: 15px;
+ 
+    
+    font-size: 1.3em;
+    max-width: 20ch;
+    text-align: right;
+    line-height: 1.4;
+    color: #0093ff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-out;
+    position: relative; /* Essencial para posicionar o pseudo-elemento da barra */
+}
+
+
+
+
+
+
+.portfolio_content p::after {
+    content: '';
+    position: absolute;
+    right: -.8em; 
+    top: 0;
+    bottom: 0;
+    width: 0.3em; /* Largura da barra */
+    background-color: rgba(139, 139, 139, 0.66); /* Cor da barra */
+    /* A opacidade será herdada do 'p' para aparecer junto com ele */
+    opacity: inherit;
+    transition: opacity 0.4s ease-out;
+    width: .19em;
+
+    border-radius: 20em;
+ 
+}
+
+
+.portfolio_content .saiba_mais_link {
+
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+    transition: background-color 0.3s ease, opacity 0.4s ease-out;
+    /* Ajustamos um padding-right também para o botão, para que ele não fique colado na borda */
+    padding-right: 40px; /* Mantém o alinhamento visual com o parágrafo */
+}
+
+
+.portfolio_item:hover .portfolio_content p,
+.portfolio_item:hover .portfolio_content .saiba_mais_link {
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0.2s;
+}
+
+
+
+/*PARCERIAS */
+
+.parcerias_h1 {
+    font-size: 1.8em; /* Tamanho para h1 */
+    text-transform: uppercase;
+    font-weight: 100; /* Ultra-fino */
+    color: #98aee0; /* Cor similar ao h1 do portfólio */
+    margin-bottom: 0.5em;
+    letter-spacing: 0.05em;
+}
+
+.parcerias_h2 {
+    font-size: 2.2em; /* Maior que h1 */
+    font-weight: normal; /* Normal */
+    color: #5d6d8d; /* Uma cor mais escura para contraste */
+    margin-top: 0;
+    margin-bottom: 1em;
+    line-height: 1.2;
+}
+
+.parcerias_p {
+    font-size: 0.9em; /* Menor */
+    text-transform: lowercase;
+    color: #8b9fce; /* Cor similar ao p do portfólio */
+    margin-bottom: 2em; /* Espaçamento antes da galeria */
+    line-height: 1.5;
+    max-width: 90%;
+}
+
+    background-color: rgb(20, 20, 20);
+    /* Background-image e gradiente como no cabeçalho (BG_01.png para mobile) */
+    background-image: linear-gradient(rgba(39, 39, 39, 0.9), rgba(39, 39, 39, 0.9)),
+                      url('../IMG/BG_01.png'); /* Imagem do header mobile */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: left bottom; /* Posição inicial como no header */
+    min-height: 500px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 20px 0;
+
+
+/* ----------------------------------------- */
+/* --- 2. TABLET PORTRAIT (600px - 37.5em) --- */
+/* ----------------------------------------- */
+
+
+@media screen and (min-width:600px){
+/* CSS-BASE.pdf styles */
+.site-header {
+min-height: 40rem;
+padding: 5rem 15px;
+background-image: linear-gradient(rgba(39, 39, 39, 0.9), rgba(39, 39, 39, 0.9)),
+url(../imagens/BG_02.png);
+}
+.menu-toggle {
+display: flex;
+right: 0;
+top: 0;
+left: auto;
+transform: translateX(0);
+opacity: 1;
+width: 60px;
+height: 60px;
+border-radius: 0;
+border-bottom-left-radius: 30px;
+border-bottom-right-radius: 30px;
+border: none;
+background: rgba(255, 240, 0, 0.26);
+transition: all 0.3s ease;
+z-index: 10;
+}
+body.menu-is-open .menu-toggle {
+background: rgb(114, 109, 20);
+width: 100%;
+border-radius: 0;
+left: 0;
+transform: translateX(0);
+border: 0;
+}
+.grupo_texto01 {
+padding: 3rem 4vw;
+gap: 2rem;
+height: 100%;
+}
+.grupo_texto01 h1 {
+font-size: 1.25em;
+padding: 0 8vw;
+white-space: nowrap;
+text-align: center;
+width: auto;
+max-width: 100%;
+overflow: hidden;
+text-overflow: ellipsis;
+min-height: 1.5em;
+}
+.grupo_texto01 h2 {
+font-size: 4.1em;
+width: auto;
+max-width: 500px;
+line-height: 1.2;
+word-wrap: break-word;
+min-height: 1.5em;
+}
+.grupo_texto01 p {
+width: auto;
+font-size: 1.1em;
+padding: 0.5em 3vw;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 100%;
+}
+.main-nav {
+top: 60px;
+height: 0;
+border-radius: 0;
+z-index: 20;
+}
+body.menu-is-open .main-nav {
+right: 0;
+left: auto;
+height: 38.8vh;
+background: transparent;
+}
+.main-nav ul {
+width: 100%;
+max-width: 100%;
+padding: 0;
+margin: 0;
+}
+body.menu-is-open .main-nav ul {
+opacity: 1;
+transform: translateY(0);
+transition-delay: 0.1s;
+}
+.main-nav li {
+width: 100%;
+padding: 0;
+margin-bottom: 0;
+border-bottom: 0;
+}
+.main-nav li a {
+background: rgba(76, 76, 77, 0.98);
+text-align: center;
+padding: .6em 0;
+border-radius: 18px;
+box-sizing: border-box;
+}
+.main-nav li a:hover {
+color: #00baff;
+background: rgba(107, 110, 113, 0.98);
+}
+
+    
+    
+/* CSS-SOBRE.pdf styles */
+    
+    
+    
+    
+.sobre{
+grid-gap: 1.2em;
+}
+
+.sobre div{
+background-color: rgba(210, 227, 227, 1);
+border-radius: 1em;
+padding: 2.5em 1.5em;
+}
+
+.sobre_img{
+width: 65%;
+}
+
+.sobre_img:hover{
+width: 70%;
+}
+
+.sobre_h2{
+padding-top: 1vh;
+color: #333333;
+font-size: 1.7em;
+}
+
+.sobre_p{
+padding: 0 ;
+max-width: 40ch;
+position: relative;
+bottom: 0;
+width: 100%;
+box-sizing: border-box;
+color: #4b4b4b;
+font-size: 1.2em;
+}
+
+.sobre div:nth-child(2) h2 {
+color: #555555;
+font-size: 1.9em;
+}
+    
+    
+      
+    
+.people-image {
+
+    width: 35em;
+    height: 35em;
+   
+}
+     
+    
+    .family_p {
+  color: #6d6a6a; /* Valor padrão para color-text */
+  font-size:1.7em;
+  margin: 0.8em 0 1em;
+        padding: 0 ;
+        line-height: 1.1;
+        max-width: 30ch;
+}  
+    
+
+    
+}
+
+/* ----------------------------------------- */
+/* --- 3. TABLET LANDSCAPE (768px - 48em) --- */
+/* ----------------------------------------- */
+
+
+
+@media screen and (min-width:768px){
+    
+    
+    
+    
+/* CSS-BASE.pdf styles */
+.site-header {
+min-height: 45rem;
+padding: 6rem 20px;
+background-image: linear-gradient(rgba(39, 39, 39, 0.9), rgba(39, 39, 39, 0.9)),
+url(../imagens/BG_03.png);
+background-size: cover;
+background-position: right top;
+}
+.menu-toggle {
+display: none;
+}
+.main-nav {
+position: fixed;
+top: 0;
+left: 0;
+right: auto;
+width: 100%;
+height: 4.6em;
+background: rgba(91, 93, 95, 0.9);
+z-index: 20;
+box-sizing: border-box;
+overflow: visible;
+border-radius: 0;
+transition: none;
+}
+body.menu-is-open .main-nav {
+height: 4.6em;
+background: rgba(91, 93, 95, 0.9);
+}
+.main-nav ul {
+width: 100%;
+max-width: 1200px;
+padding: 0;
+margin: 0 auto;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+opacity: 1;
+transform: translateY(0);
+transition: none;
+transition-delay: 0s;
+}
+.main-nav li {
+width: auto;
+margin: 0 0.5em;
+padding: 0;
+opacity: 1;
+transform: translateY(0);
+border-bottom: none;
+transition: none;
+transition-delay: 0s;
+}
+.main-nav li a {
+padding: 1.2em 1.0em;
+font-size: 0.95em;
+margin: 0;
+border-radius: 0;
+background: transparent;
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
+transform: translateY(0);
+transition: all .3s linear;
+}
+.main-nav li a:hover {
+padding: 1.2em 1.2em;
+font-size: 1.05em;
+background: transparent;
+color: #00baff;
+transform: translateY(2);
+}
+.main-nav li a:hover:before {
+display: none;
+}
+.grupo_texto01 {
+max-width: 90%;
+width: auto;
+margin-left: 0;
+margin-right: auto;
+padding-left: 0;
+}
+
+    
+    
+    
+/* CSS-SOBRE.pdf styles */
+    
+    
+    
+    
+    
+.sobre{
+grid-gap: 2.5em;
+padding: 0 2.5em;
+}
+
+.sobre_img{
+width: 60%;
+}
+
+.sobre_img:hover{
+width: 70%;
+}
+
+.sobre_h2{
+padding-top: 1vh;
+color: #333333;
+font-size: 1.7em;
+}
+
+.sobre_p{
+max-width: 50ch;
+position: relative;
+}
+
+.sobre div:nth-child(2) {
+border: 0;/*trabalhar o erro porque fica com borda*/
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ /*FAMILY */   
+    
+    
+    
+    
+  
+    
+        
+.family {
+    grid-template-columns: 1fr 1fr; /* Agora, os dois containers ficam lado a lado, cada um ocupando 1 fração da largura */
+    gap: 3em; /* Ajuste o espaçamento entre as colunas */
+   padding:  2.5em 1em 11em 1em;
+    text-align: left; /* Alinha o texto à esquerda para o layout de duas colunas */
+  }
+
+
+.family_barra {
+    /* CSS Grid - 1 coluna única */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    
+    /* Dimensões REDUZIDAS EM 20% */
+    width: 340px;
+    height: 272px;
+    
+    /* Formato "D" espelhado - border-radius proporcional */
+    border-top-left-radius: 160px;
+    border-bottom-left-radius: 160px;
+    
+    /* Cortar conteúdo que sair da forma */
+    overflow: hidden;
+    
+    /* Posicionamento relativo para z-index dos filhos */
+    position: relative;
+    
+    /* Cursor sem animação de escala */
+    cursor:no-drop;
+    background-color: #7c6e03;
+}
+
+/* ===== IMAGEM (SEGUNDO PLANO) ===== */
+.people-image {
+    /* Posicionamento no grid - ocupa toda a área */
+    grid-column: 1;
+    grid-row: 1;
+    
+    /* Dimensões e ajuste moderno */
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    
+    /* Rotação 90 graus para esquerda */
+    transform: rotate(-90deg);
+    
+    /* Z-index menor (segundo plano) */
+    z-index: 1;
+    
+    /* Transições suaves */
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: .5;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    
+}
+
+/* ===== HOVER: DESPERTAR DA IMAGEM ===== */
+.family_barra:hover .people-image {
+    transform: rotate(-85deg) scale(1.05);
+    filter: contrast(1.1);
+}
+
+/* ===== BARRAS COLORIDAS CMY (PRIMEIRO PLANO) ===== */
+.family_barraC,
+.family_barraM,
+.family_barraY {
+    /* Posicionamento no grid - todas ocupam a mesma área */
+    grid-column: 1;
+    grid-row: 1;
+    
+    /* Dimensões das barras REDUZIDAS EM 20% */
+    width: 44px;
+    height: 100%;
+    
+    /* Z-index maior (primeiro plano) */
+    z-index: 2;
+    
+    /* Bordas suaves */
+    border-radius: 1px;
+    
+    /* Alinhamento à direita usando justify-self */
+    justify-self: end;
+    
+    /* Transições suaves para animação */
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ===== POSICIONAMENTO ESPECÍFICO DE CADA BARRA ===== */
+.family_barraC {
+    background-color: #00B1EB; /* Ciano */
+    margin-right: 102px;
+    transition-delay: 0.4s;
+    
+    /* SOMBRA INTENSIFICADA À ESQUERDA - CIANO */
+    box-shadow: 
+        3px 0 8px rgba(51, 51, 51, 0.7),      /* Sombra direita normal */
+        -15px 0 25px rgba(34, 34, 34, 0.9),   /* Sombra esquerda INTENSA */
+        -8px 0 15px rgba(17, 17, 17, 0.8);    /* Sombra esquerda adicional */
+}
+
+.family_barraM {
+    background-color: #EC008C; /* Magenta */
+    margin-right: 51px;
+    transition-delay: 0.2s;
+    
+    /* SOMBRA INTENSIFICADA À ESQUERDA - MAGENTA */
+    box-shadow: 
+        3px 0 8px rgba(51, 51, 51, 0.7),      /* Sombra direita normal */
+        -12px 0 20px rgba(34, 34, 34, 0.85),  /* Sombra esquerda INTENSA */
+        -6px 0 12px rgba(17, 17, 17, 0.75);   /* Sombra esquerda adicional */
+}
+
+.family_barraY {
+    background-color: #FFEA00; /* Yellow (Amarelo) */
+    margin-right: 0px;
+    transition-delay: 0s;
+    
+    /* SOMBRA INTENSIFICADA À ESQUERDA - AMARELA */
+    box-shadow: 
+        3px 0 8px rgba(51, 51, 51, 0.7),      /* Sombra direita normal */
+        -10px 0 18px rgba(34, 34, 34, 0.8),   /* Sombra esquerda INTENSA */
+        -5px 0 10px rgba(17, 17, 17, 0.7);    /* Sombra esquerda adicional */
+}
+
+/* ===== HOVER: DANÇA DAS BARRAS CMY ===== */
+.family_barra:hover .family_barraY {
+    width: 52px;
+    margin-right: -4px;
+    /* SOMBRA HOVER INTENSIFICADA - AMARELA */
+    box-shadow: 
+        4px 0 12px rgba(51, 51, 51, 0.8),     /* Sombra direita */
+        -14px 0 24px rgba(34, 34, 34, 0.9),   /* Sombra esquerda INTENSA */
+        -7px 0 14px rgba(17, 17, 17, 0.8);    /* Sombra esquerda adicional */
+    animation: breathing 2s ease-in-out infinite;
+}
+
+.family_barra:hover .family_barraM {
+    width: 56px;
+    margin-right: 45px;
+    /* SOMBRA HOVER INTENSIFICADA - MAGENTA */
+    box-shadow: 
+        4px 0 12px rgba(51, 51, 51, 0.8),     /* Sombra direita */
+        -18px 0 30px rgba(34, 34, 34, 0.95),  /* Sombra esquerda MUITO INTENSA */
+        -10px 0 18px rgba(17, 17, 17, 0.85);  /* Sombra esquerda adicional */
+    animation: breathing 2s ease-in-out infinite 0.3s;
+}
+
+.family_barra:hover .family_barraC {
+    width: 60px;
+    margin-right: 93px;
+    /* SOMBRA HOVER INTENSIFICADA - CIANO */
+    box-shadow: 
+        4px 0 12px rgba(51, 51, 51, 0.8),     /* Sombra direita */
+        -20px 0 35px rgba(34, 34, 34, 0.95),  /* Sombra esquerda MUITO INTENSA */
+        -12px 0 20px rgba(17, 17, 17, 0.9);   /* Sombra esquerda adicional */
+    animation: breathing 2s ease-in-out infinite 0.6s;
+}
+
+/* ===== ANIMAÇÃO DE RESPIRAÇÃO CONTÍNUA ===== */
+@keyframes breathing {
+    0%, 100% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(1.02);
+    }
+}
+
+
+
+
+/* DEFINIÇÃO DO SEGUNDO CONTAINER GRID: family_text */
+.family_text {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.family_img:hover {
+  border-radius: 50% 50% 50% 0;
+}
+
+.family_h1 {
+  color: #fff; /* Valor padrão para color-hover */
+  font-size: clamp(3.4rem, 5vw, 3rem);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+    .family_p {
+  color: #6d6a6a; /* Valor padrão para color-text */
+  font-size:1.2em;
+  margin:0 0 1em 0;
+        padding: 0;
+        line-height: 1.2;
+        max-width: 28ch;
+}
+
+.button_big_family a {
+  display: inline-block;
+  padding: 0.8em 1.5em;
+    border-radius: 0 10em 10em 0;
+
+
+  text-decoration: none;
+  border: 0.15em solid #0093ff; /* Valor padrão para color-secondary */
+  transition: all 0.3s linear; /* Valor padrão para transition-default */
+  font-size: 1.2em;
+}
+
+.button_big_family a:hover {
+  background-color: rgb(0, 147, 255); /* Valor padrão para color-secondary */
+  color: #fff; /* Valor padrão para color-hover */
+  padding: 0.8em 1.8em;
+} 
+    
+    
+    
+    
+ /*PROTIFÓLIO 768PX*/   
+    
+    
+    
+    
+    /* ... (Estilos existentes para site-header, main-nav, grupo_texto01, sobre, family) ... */
+
+    /* INÍCIO: Novos estilos para a seção Portfolio */
+
+    .portfolio {
+        /* Remove o margin-top negativo que puxa para cima no mobile, garantindo o espaçamento correto */
+        margin-top: 0;
+        padding-top: 40px; /* Adiciona um padding no topo da seção para melhor espaçamento */
+        border-radius: 0; /* Remove o border-radius específico do mobile, se desejado */
+    }
+
+    .portfolio_grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Cria duas colunas de larguras iguais */
+        gap: 30px; /* Espaçamento entre os itens da grade */
+        padding: 0 20px; /* Padding nas laterais da grade */
+    }
+
+    .portfolio_item {
+        height: 350px; /* Reduz a altura dos itens do portfólio para um visual de grade mais compacto */
+        border-radius: 1em; /* Arredonda os cantos dos itens */
+    }
+
+    /* Ajustes finos para o .portfolio_content dentro dos novos itens de grade */
+    .portfolio_content {
+        top: 10%; /* Ajusta a posição vertical da tarja */
+        height: 80%; /* Aumenta a altura da tarja para cobrir mais o item */
+        /* width: 80%; e transform: translateX(-75%) permanecem do breakpoint anterior,
+           pois se comportam proporcionalmente */
+    }
+
+    .portfolio_content h2 {
+        /* Sem alterações específicas necessárias, pois o posicionamento é relativo ao .portfolio_content */
+        right: 15px; /* Ajusta a posição do h2 para que fique um pouco mais afastado da borda */
+        font-size: 1.2em; /* Aumenta ligeiramente o tamanho da fonte do h2 */
+    }
+
+    .portfolio_content p {
+        /* O max-width: 45ch do breakpoint anterior geralmente se comporta bem aqui,
+           mas podemos ajustá-lo se o texto ficar muito largo ou estreito */
+        max-width: 35ch; /* Ajusta para um pouco mais estreito se os itens forem menores na tela */
+        margin-right: 40px; /* Ajusta a margem para a direita para acomodar o novo posicionamento do h2 e barra */
+        font-size: 1.1em; /* Ajusta o tamanho da fonte do parágrafo */
+    }
+
+    .portfolio_content p::after {
+        right: 35px; /* Ajusta a posição da barra para ficar alinhada com o novo margin-right do parágrafo */
+    }
+
+    .portfolio_content .saiba_mais_link {
+        margin-right: 40px; /* Mantém o alinhamento com o parágrafo */
+    }
+
+    /* FIM: Novos estilos para a seção Portfolio */
+    
+    
+    
+   /*parcerias */ 
+    
+    
+    
+        .parcerias_content_wrapper {
+        /* ... outras propriedades ... */
+        text-align: left; /* Alinha o texto à esquerda */
+        align-items: flex-start; /* Alinha os itens flexíveis à esquerda */
+    }
+
+    .parcerias_h1,
+    .parcerias_h2,
+    .parcerias_p {
+        text-align: left; /* Garante que o texto fique alinhado à esquerda */
+    }
+
+    /* ... outras propriedades ... */
+}
+
+@media screen and (min-width: 1024px) {
+    .parcerias_h1 {
+        font-size: 2.2em;
+    }
+
+    .parcerias_h2 {
+        font-size: 2.8em;
+    }
+
+    .parcerias_p {
+        font-size: 1.1em;
+        max-width: 80%; /* Mais espaço para o parágrafo */
+    }
+
+    
+    
+        .parcerias {
+        /* Muda a imagem de fundo para BG_03.png, como no cabeçalho */
+        background-image: linear-gradient(rgba(39, 39, 39, 0.9), rgba(39, 39, 39, 0.9)), url('../IMG/BG_03.png'); /* Imagem do header 768px */
+        background-size: cover; /* Cobre a seção inteira */
+        background-position: right top; /* Posição como no header 768px */
+        min-height: 600px;
+    }
+
+    .parcerias_content_wrapper {
+        width: 60%;
+        background-color: rgba(230, 230, 250, 0.8); /* Fundo semi-transparente para ver a imagem */
+        padding: 40px 30px;
+        text-align: left;
+        align-items: flex-start;
+    }
+    
+    
+    
+}
+
+/* ----------------------------------------- */
+/* --- 4. DESKTOP MÉDIO ( 825px - 51.5625em) --- */
+/* ----------------------------------------- */
+@media screen and (min-width:825px){
+/* CSS-BASE.pdf doesn't have specific styles for 825px here, only a placeholder. */
+
+/* CSS-SOBRE.pdf styles */
+.sobre{
+grid-template-columns: 1fr 1fr; /* Duas colunas */
+grid-auto-rows: auto;
+grid-gap: 1.6em;
+background-color: rgb(122, 152, 152);
+padding-bottom: 3em;
+padding-top: 3em;
+}
+
+/* Reset das propriedades de grid-column/row para o item 3 para que ele flua naturalmente */
+.sobre div{ /* Reseta display flex e alinhamento para os itens que não são o segundo filho */
+display: flex;
+flex-direction: column;
+justify-content:space-evenly;
+text-align: center;
+align-items: center;
+padding: 1.5em; /* Garante padding consistente para os itens secundários */
+}
+.sobre_img{ /* Reset para as imagens dos demais itens */
+width: 70%;
+border-radius: 50%;
+padding: 5%;
+box-sizing: border-box;
+}
+.sobre_img:hover{
+width: 80%;
+}
+
+.button_big a {
+padding: .6em 3em;
+background-color: rgb(255, 0, 255);
+border: .15em solid #fff;
+color:#fff;
+border-radius: 1em;
+font-size: 1.2em;
+}
+
+.button_big a:hover {
+padding: .8em 5em;
+background-color: rgb(255, 0, 255);
+border: .15em solid #fff;
+color:#fff;
+border-radius: 1em;
+font-size: 1.2em;
+}
+
+/* REORDENAÇÃO DOS OUTROS ITENS */
+.sobre div:nth-child(1) {
+order: 2; /* Será o segundo item a aparecer, na primeira coluna da próxima linha */
+}
+
+.sobre div:nth-child(3) {
+order: 3; /* Será o terceiro item a aparecer, na segunda coluna da próxima linha */
+}
+
+/* ESTILO PARA O ITEM PRINCIPAL (COM BOTÃO ATIVO) */
+.sobre div:nth-child(2) {
+order: 1; /* Garante que ele seja o primeiro a aparecer */
+grid-column: 1 / -1;
+display: grid;
+grid-template-columns: 1fr 2fr; /* Imagem (1/3) e Conteúdo (2/3) */
+grid-gap: 2em; /* Espaçamento entre as colunas internas */
+align-items: stretch; /* Essencial: faz os itens preencherem a altura disponível de sua célula */
+padding: 2em 2em 2em 4em; /* Padding interno para o novo layout */
+margin: 0; /* AJUSTE AQUI: Correção de 'margin: 0 em;' para 'margin: 0;' */
+border: 0;
+background-color: transparent;
+}
+.sobre div:nth-child(2) img {
+grid-column: 1; /* A imagem vai para a primeira coluna da grade interna */
+width: 100%; /* Faz a imagem preencher a largura da sua coluna */
+height: 100%; /* NOVO: Faz a imagem preencher a altura da sua célula */
+object-fit: cover;
+object-position: center;
+border-radius: 2vw 15vw 15vw 15vw ;
+margin: 0; /* Remove margens auto */
+padding: .6em;
+display: block; /* Garante que seja um bloco para object-fit */
+background-color: rgb(255, 255, 255);
+}
+/* ESTILO PARA O NOVO BLOCO DE CONTEÚDO (texto e botão) */
+.sobre div:nth-child(2) .content-text-block {
+grid-column: 2; /* Posição na segunda coluna */
+display: flex;
+flex-direction: column;
+align-items: center; /* Centraliza os itens horizontalmente (h2, p, button) */
+justify-content: center; /* NOVO: Centraliza os itens verticalmente dentro deste bloco */
+padding: 0; /* Remove padding externo que pode afetar o alinhamento */
+height: 100%; /* NOVO: Garante que o bloco preencha a altura da sua célula para justifycontent */
+padding: 0 1.8em;
+margin: 0
+}
+
+/* Estilos dos elementos internos do content-text-block */
+.sobre div:nth-child(2) h2 {
+color:#fff;
+margin-top:0; /* Remove margem superior padrão */
+margin-bottom: 0; /* Espaçamento abaixo do h2 */
+text-align: center; /* Centraliza o texto */
+font-size: 2em;
+}
+
+.sobre div:nth-child(2) p {
+color: #fff;
+margin:0;
+max-width: 40ch;
+text-align: center;
+padding: 0;
+line-height: 1.5;
+font-size: 1.1em
+}
+    
+    
+    
+    
+ /*FAMILY */   
+    
+    
+    
+        
+
+.family_barra {
+
+    width: 400px;
+    height: 320px;
+    background-color: #7c6e03;
+}
+
+    
+
+    
+    
+    
+    
+    /*PORTIFÓLIO*/
+    
+     
+    
+    
+    
+}
+
+/* ----------------------------------------- */
+/* --- 5. DESKTOP MÉDIO (1024px - 64em) --- */
+/* ----------------------------------------- */
+
+
+@media screen and (min-width:1024px){
+    
+    
+/* CSS-BASE.pdf styles */
+.site-header {
+min-height: 50rem;
+padding: 7rem 25px;
+background-image: linear-gradient(rgba(39, 39, 39, 0.9), rgba(39, 39, 39, 0.9)),
+url(../imagens/BG_03.png);
+background-size: contain;
+background-position: right bottom;
+}
+.main-nav li {
+margin: 0 0.8em;
+}
+.main-nav li a {
+padding: 1.3em 1.2em;
+font-size: 1.05em;
+}
+.main-nav li a:hover {
+padding: 1.3em 1.5em;
+font-size: 1.15em;
+}
+.grupo_texto01 {
+max-width: 90%;
+width: auto;
+margin-left: 0;
+margin-right: auto;
+padding-left: 0;
+}
+.grupo_texto01 h1 {
+font-size: 1.3em;
+}
+.grupo_texto01 h2 {
+font-size: 4.5em;
+max-width: 600px;
+}
+.grupo_texto01 p {
+font-size: 1.1em;
+padding: 0.9em 3vw;
+}
+.site-header::after {
+height: 50px;
+background-color: rgb(227, 9, 227);
+}
+
+    
+    
+/* CSS-SOBRE.pdf styles */
+    
+    
+.sobre{
+grid-gap: 0 2em;
+}
+
+.sobre div:nth-child(1) {
+margin-left: 3em;
+}
+
+.sobre div:nth-child(3){
+margin-right: 3em;
+}
+    
+    
+    
+   /*FAMILY*/ 
+    
+    
+    
+    
+    
+    
+    
+    .family {
+    grid-template-columns: 1fr 1fr; /* Agora, os dois containers ficam lado a lado, cada um ocupando 1 fração da largura */
+    gap:0; /* Ajuste o espaçamento entre as colunas */
+    padding: 4em 0em; /* Ajuste o padding geral da seção */
+    text-align: ce; /* Alinha o texto à esquerda para o layout de duas colunas */
+        margin: 0;
+  }
+
+
+.family_barra {
+
+    background-color: #7c0377;
+}
+
+/* ===== IMAGEM (SEGUNDO PLANO) ===== */
+.people-image {
+
+    width: 90%;
+  
+    
+}
+
+/* ===== HOVER: DESPERTAR DA IMAGEM ===== */
+.family_barra:hover .people-image {
+    transform: rotate(-100deg) scale(1.05);
+    filter: contrast(1.1);
+}
+
+   
+/* DEFINIÇÃO DO SEGUNDO CONTAINER GRID: family_text */
+
+.family_text {
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+    padding: 0;
+    
+}
+
+
+
+.family_h1 {
+  color: #fff; /* Valor padrão para color-hover */
+  font-size: clamp(3.4rem, 5vw, 3rem);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+    .family_p {
+  color: #6d6a6a; /* Valor padrão para color-text */
+  font-size:1.2em;
+  margin: 1em 0;
+       
+        line-height: 1.5;
+            max-width: 30ch;
+}
+
+.button_big_family a {
+  display: inline-block;
+  padding: 0.8em 2em;
+  background-color: #000; /* Valor padrão para color-primary */
+  color: #0093ff; /* Valor padrão para color-text */
+  text-decoration: none;
+  border: 0.15em solid rgb(0, 147, 255); /* Valor padrão para color-secondary */
+  transition: all 0.3s linear; /* Valor padrão para transition-default */
+  font-size: 1.2em;
+}
+
+.button_big_family a:hover {
+  background-color: #0093ff; /* Valor padrão para color-secondary */
+  color: #fff; /* Valor padrão para color-hover */
+  padding: 0.8em 3.5em;
+}
+    
+    
+    /* PORTIFÓLIO*/
+    
+    @media screen and (min-width: 1024px) {
+        
+    .portfolio {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        background-color: #fff; /* Fundo do portfólio */
+        border-radius: 0;
+    }
+
+    .port_titulos {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+    }
+
+    .port_titulos h1 {
+        font-size: 1em;
+        color: #98aee0;
+        line-height: 1.2;
+        max-width: 50ch;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 1em;
+        text-transform: uppercase;
+        font-weight: lighter;
+        font-family: calibri;
+        border-bottom: .2em solid #000;
+        margin-top: 4em;
+    }
+
+    .port_titulos p {
+        font-size: .95em;
+        line-height: 1.5;
+        color: #8b9fce;
+        max-width: 48ch;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: lighter;
+        letter-spacing: .03em;
+        font-family: calibri;
+        text-align: center;
+    }
+
+    .portfolio_grid {
+        display: flex;
+        flex-direction: row;
+        gap: 0.2em;
+        height: 405px; /* Altura reduzida em 10% */
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+
+        /* Variáveis para cálculo de largura proporcional */
+        --portfolio-gap: 0.6em;
+        --total-gap-width: calc(3 * var(--portfolio-gap));
+        --item-unit-width: calc((100% - var(--total-gap-width)) / 6);
+    }
+
+    .portfolio_item {
+        position: relative;
+        border: 0;
+        height: 405px; /* Altura reduzida em 10% */
+        width: var(--item-unit-width); /* Largura padrão para itens não expandidos */
+        flex-shrink: 0;
+        border-radius: 0;
+        transition: width 0.4s ease-out, box-shadow 0.3s ease, background-image 0.4s ease, background-size 0.4s ease;
+        background-size: cover; /* Estado inicial da imagem de fundo */
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    /* Cores CMYK e imagens de fundo */
+    .port_Cotidianos {
+        background-image: linear-gradient(rgba(0, 177, 235, 0.3), rgba(0, 177, 235, 0.5)), url('../imagens/portifolio/01.jpg'); /* Ciano */
+    }
+    .port_Usual {
+        background-image: linear-gradient(rgba(236, 0, 140, 0.3), rgba(236, 0, 140, 0.5)), url('../imagens/portifolio/02.jpg'); /* Magenta */
+    }
+    .port_Especial {
+        background-image: linear-gradient(rgba(255, 234, 0, 0.3), rgba(255, 234, 0, 0.5)), url('../imagens/portifolio/03.jpg'); /* Amarelo */
+    }
+    .port_plotter {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../imagens/portifolio/04.jpg'); /* Preto */
+    }
+
+    /* Expansão e Contração dos Itens */
+    .portfolio_item:first-child {
+        width: calc(3 * var(--item-unit-width)); /* Primeiro item expandido por padrão */
+    }
+
+    .portfolio_item:hover {
+        width: calc(3.6 * var(--item-unit-width)); /* Item em hover expande */
+        transform: none;
+    }
+
+    .portfolio_grid:hover .portfolio_item:not(:hover) {
+        width: var(--item-unit-width); /* Outros itens colapsam no hover */
+    }
+
+    /* Efeito de Zoom e Transparência no Hover */
+    .portfolio_item:hover {
+        background-size: 110%; /* Zoom na imagem */
+    }
+    .port_Cotidianos:hover {
+        background-image: linear-gradient(rgba(0, 177, 235, 0.5), rgba(0, 177, 235, 0.5)), url('../imagens/portifolio/01.jpg');
+    }
+    .port_Usual:hover {
+        background-image: linear-gradient(rgba(236, 0, 140, 0.5), rgba(236, 0, 140, 0.5)), url('../imagens/portifolio/02.jpg');
+    }
+    .port_Especial:hover {
+        background-image: linear-gradient(rgba(255, 234, 0, 0.5), rgba(255, 234, 0, 0.5)), url('../imagens/portifolio/03.jpg');
+    }
+    .port_plotter:hover {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imagens/portifolio/04.jpg');
+    }
+
+   
+    
+        
+        
+        
+    /* Barra Lateral Vertical (`vertical_text_band`) */
+    .vertical_text_band {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 54px; /* Largura reduzida em 10% */
+        background-color:transparent; /* Preta total */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        border-radius: 0;
+        opacity: 1 !important; /* Sempre visível */
+        visibility: visible !important; /* Sempre visível */
+        transition: none !important; 
+
+    
+    }
+
+    
+        
+    .vertical_text_band {
+    background-color: rgb(0, 0, 0);
+    padding: 10px 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 3em;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    writing-mode: vertical-lr;
+    white-space: nowrap;
+    border-radius: 0;
+  
+    opacity: 1; 
+    transition: transform 0.6s ease-out;
+}
+  
+    
+     .portfolio_content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(100% - 9px); 
+        height: 100%;
+        background: transparent;
+        color: #333;
+        border-radius: 0;
+        padding: 20px;
+        z-index: 3;
+        opacity: 1 !important;
+        visibility: visible !important; 
+        transform: none !important; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; 
+        align-items:flex-start; 
+        gap: 10px;
+    }
+       
+        
+        .portfolio_item:hover .portfolio_content {
+    transform: translateX(0);
+    background-color: transparent;
+}
+
+         
+    /* Título H2 (`portfolio_content h2`) */
+      .portfolio_content h2 {
+        color: #fff;
+        font-weight: lighter;
+          letter-spacing: .1em;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%); 
+        white-space: nowrap;
+        text-align: center;
+        font-size: 1.5em;
+        z-index: 4;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transition: none;
+        margin: 0;
+        padding: 0;
+        writing-mode: vertical-lr; 
+        right:0%; 
+          
+    } 
+        
+    
+
+        
+    /* Parágrafo do Conteúdo (`portfolio_content p`) */
+    .portfolio_content p {
+        display: flex;
+        font-size:1.2em; /* Tamanho ajustado */
+        line-height: 1.4;
+        margin-bottom: 0;
+        color: rgba(0, 0, 0, 0.9);
+        font-family: calibri;
+        max-width: 20ch; /* Limita a largura para melhor quebra de texto */
+        text-align: left;
+        opacity: 0; /* Invisível por padrão */
+        visibility: hidden; /* Invisível por padrão */
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        transform: translateY(10px);
+        margin-right: 0;
+        padding-right: 0;
+
+    }
+        
+        
+    
+.portfolio_content p::after {
+  
+   display: none;
+    
+}    
+        
+
+    /* Link "Saiba Mais" (`saiba_mais_link`) */
+    .saiba_mais_link {
+        margin-top: 1em;
+        padding: 10px 30px;
+        background-color: #00a7ff;
+        color: #000;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 300;
+        box-shadow: none;
+        font-size: 1.08em; /* Tamanho ajustado */
+        opacity: 0; /* Invisível por padrão */
+        visibility: hidden; /* Invisível por padrão */
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        transform: translateY(10px);
+        
+    }
+
+    /* Visibilidade do parágrafo e link em itens expandidos/em hover */
+    .portfolio_item:first-child .portfolio_content p,
+    .portfolio_item:first-child .saiba_mais_link,
+    .portfolio_item:hover .portfolio_content p,
+    .portfolio_item:hover .saiba_mais_link {
+        opacity: 1; /* Torna visível */
+        visibility: visible; /* Torna visível */
+        transform: translateY(0); /* Remove o deslocamento */
+        transition-delay: 0.1s;
+    }
+
+    /* Otimizações de Performance e Acessibilidade */
+    .portfolio_item {
+        will-change: width;
+        backface-visibility: hidden;
+    }
+
+    .portfolio_item:focus {
+        outline: 3px solid #007bff;
+        outline-offset: 2px;
+    }
+
+    .saiba_mais_link:focus {
+        outline: 2px solid #007bff;
+        outline-offset: 2px;
+    }
+
+    .portfolio_item:focus {
+        width: calc(3 * var(--item-unit-width));
+    }
+
+    .portfolio_item:focus .portfolio_content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .portfolio_item:focus .vertical_text_band {
+        opacity: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .portfolio_item,
+        .portfolio_content,
+        .vertical_text_band,
+        .saiba_mais_link {
+            transition: none;
+            animation: none;
+        }
+    }
+}
+    
+   
+    
+}
+
+/* ----------------------------------------- */
+/* --- 6. DESKTOP GRANDE / ULTRA-WIDESCREEN (1284px) --- */
+/* (Breakpoint final alinhado conforme sua instrução) */
+/* ----------------------------------------- */
+@media screen and (min-width:1284px){ /* Ajustado de 1250px para 1284px conforme instrução */
+/* CSS-BASE.pdf styles */
+.site-header {
+background-image: linear-gradient(rgba(39, 39, 39, 0.9), rgba(39, 39, 39, 0.9)),
+url(../imagens/BG_03.png);
+}
+.grupo_texto01 {
+max-width: 100%;
+width: auto;
+margin-left: 0;
+margin-right: auto;
+padding-left: 0;
+}
+.grupo_texto01 h1 {
+font-size: 1.3em;
+}
+.grupo_texto01 h2 {
+font-size: 5.3em;
+max-width: 600px;
+}
+.grupo_texto01 p {
+font-size: 1.3em;
+padding: 0.9em 3vw;
+}
+.site-header::after {
+height: 80px;
+background-color: rgb(227, 9, 227);
+}
+
+/* CSS-SOBRE.pdf styles */
+.sobre{
+width: 100%;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-gap: 2em;
+background-color: #e3eded;
+box-sizing: border-box;
+}
+
+.sobre div{
+order: initial;
+grid-column: auto;
+grid-row: auto;
+padding: 2em;
+background-color: transparent;
+border-radius: 1em;
+margin: 0;
+display: flex;
+flex-direction: column;
+justify-content:space-evenly;
+text-align: center;
+align-items: center;
+}
+.sobre_p{
+max-width: 40ch;
+font-size: 1.2em;
+}
+
+.sobre div:nth-child(1) {
+order:1;
+}
+
+.sobre div:nth-child(3) {
+order: 2;
+}
+
+.sobre div:nth-child(2) {
+grid-column: auto;
+grid-gap: 1em;
+display: flex;
+flex-direction: column;
+background-color: rgb(149, 185, 185);
+margin: 0;
+padding: 2em;
+}
+
+.sobre div:nth-child(2) h2 {
+margin: 0;
+padding: 0;
+color: #0e4b3f;
+}
+
+.sobre div:nth-child(2) p {
+color: #116957;
+max-width: 60ch;
+}
+
+.sobre div:nth-child(2) img {
+width: 70%;
+height: auto; /* Volta para altura automática */
+object-fit: initial; /* Remove object-fit */
+object-position: initial; /* Remove object-position */
+border-radius: 50%; /* Volta para border-radius original */
+margin: auto; /* Volta para padrão */
+}
+    
+    
+    
+ /*FAMILY */   
+
+    
+      ;
+    
+    
+
+    
+     .family {
+       display:grid;
+             padding:  2.5em 1em 20em 1em;
+    
+        padding: 4% 15%; 
+    }
+
+    
+      .family_p {
+        
+        max-width: 30ch; 
+        padding: 0; 
+    }
+    
+    
+    /* portifólio */
+    
+    
+  /*parceiras*/  
+    
+ .parcerias {
+        /* Mantém BG_03.png, mas muda o size e position como no header 1024px */
+        background-size: contain; /* Se ajusta para caber sem cortar */
+        background-position: right bottom; /* Posição como no header 1024px */
+        min-height: 700px;
+    }
+
+    .parcerias_content_wrapper {
+        width: 45%;
+        padding: 50px 40px;
+    }
+ 
+    
+    
+    
+    
+    
+}
+
+/* Estilos para impressão */
+@media print {
+.menu-toggle, .main-nav {
+display: none !important;
+}
+.site-header {
+height: auto;
+background: none;
+color: #000;
+}
+.site-header::after {
+display: none;
+}
+.grupo_texto01 {
+color: #000;
+padding: 1em;
+}
+.grupo_texto01 h1, .grupo_texto01 h2, .grupo_texto01 p {
+color: #000;
+background: none;
+border: none;
+}
+.site-main, .site-footer {
+background: none;
+color: #000;
+}
+}
